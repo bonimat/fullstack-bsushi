@@ -1,18 +1,22 @@
-import california from '../images/california.png';
 
-function Card() {
-    return (
-        <div className="col">
-            <div className="card" style={{ width: '18rem', textAlign: 'center' }}>
-                <img src={california} className="card-img-top" alt="Sushi" />
-                <div className="card-body">
-                    <h5 className="card-title">California Roll</h5>
-                    <p className="card-text">€1.99</p>
-                    <button className="btn btn-outline-danger">Elimina</button>
+import React, { Component } from 'react';
+
+class Card extends Component {
+    render() {
+        return (
+            <div className="col">
+                <div className="card" style={{ width: '18rem', textAlign: 'center' }}>
+                    <img src={this.props.card.immagine} className="card-img-top" alt="Sushi" />
+                    <div className="card-body">
+                        <h5 className="card-title">{this.props.card.nome} Roll</h5>
+                        <p className="card-text">{this.props.card.prezzo}</p>
+                        <button onClick={()=>this.props.onDelete(this.props.card.id)} className="btn btn-outline-danger">Elimina</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
+
 
 export default Card;
