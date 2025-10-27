@@ -7,8 +7,7 @@ class Card extends Component {
             <div className="col">
                 <div className="card" style={{ width: '18rem', textAlign: 'center' }}>
 
-                    <div className="d-flex justify-content-center align-items-center gap-4 my-1"
-                    >
+                    <div className="d-flex justify-content-center align-items-center gap-2 my-2">
                     <button
                         onClick={() => this.props.onIncrement(this.props.card)}
                         className="btn btn-primary"
@@ -21,7 +20,7 @@ class Card extends Component {
                     >
                         Rimuovi
                     </button>
-                    <span className="badge text-bg-dark">
+                    <span className="badge text-bg-light">
                         {this.props.card.quantità}
                     </span>
                     </div>
