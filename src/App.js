@@ -17,17 +17,17 @@ class App extends Component {
     totalespesa : 0,
     totalepezzi : 0,
     cards: [
-      {id: 0, nome: 'California', prezzo: 1.99, immagine: california, quantità: 0},  
-      {id: 1, nome: 'Dragon', prezzo: 2.99, immagine: dragon, quantità: 0},  
-      {id: 2, nome: 'Dynamite', prezzo: 3.99, immagine: dynamite, quantità: 0},  
-      {id: 3, nome: 'Philadelphia', prezzo: 4.99, immagine: philadelphia, quantità: 0},  
-      {id: 4, nome: 'Rainbow', prezzo: 5.99, immagine: rainbow, quantità: 0},  
-      {id: 5, nome: 'Shrimp', prezzo: 6.99, immagine: shrimp, quantità: 0}
+      {id: 0, nome: 'California', prezzo: 1.00, immagine: california, quantità: 0},  
+      {id: 1, nome: 'Dragon', prezzo: 2.00, immagine: dragon, quantità: 0},  
+      {id: 2, nome: 'Dynamite', prezzo: 3.00, immagine: dynamite, quantità: 0},  
+      {id: 3, nome: 'Philadelphia', prezzo: 4.00, immagine: philadelphia, quantità: 0},  
+      {id: 4, nome: 'Rainbow', prezzo: 5.00, immagine: rainbow, quantità: 0},  
+      {id: 5, nome: 'Shrimp', prezzo: 6.00, immagine: shrimp, quantità: 0}
     ]
   };
 
   handleDelete = cardId => {
-    const cards = [...this.state.cards];
+    let cards = [...this.state.cards];
     if (cards[cardId].quantità === 0) return;
 
     const totalepezzi = this.state.totalepezzi - cards[cardId].quantità;
@@ -54,11 +54,16 @@ class App extends Component {
     const cards = [...this.state.cards];
     const id = cards.indexOf(card);
     cards[id] = {...card };
-    cards[id].quantità = cards[id].quantità > 0 ? cards[id].quantità - 1 : cards[id].quantità; 
     
-    const totalepezzi = this.state.totalepezzi > 0 ? this.state.totalepezzi -1 : this.state.totalepezzi; 
-    const totalespesa = this.state.totalespesa > 0 ? this.state.totalespesa - cards[id].prezzo: this.state.totalespesa;
+    let totalepezzi =this.state.totalepezzi; 
+    let totalespesa =this.state.totalespesa;
     
+    if (cards[id].quantità > 0) {
+      totalepezzi = this.state.totalepezzi - 1; 
+      totalespesa = this.state.totalespesa-cards[id].prezzo;
+      cards[id].quantità--;
+    }
+
     this.setState({ cards, totalepezzi, totalespesa  });
   }
 
